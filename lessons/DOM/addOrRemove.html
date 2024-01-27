@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="add-lang-btn">Add New Language</button>
+    <ul class="languages">
+        <li>Javascript</li>
+        <li>Bun</li>
+        <li>Ruby</li>
+    </ul>
+</body>
+
+<script>
+    let addLanguageBtn = document.querySelector(".add-lang-btn")
+    let allLanguages = Array.from(document.querySelectorAll(".languages li"))
+    allLanguages.forEach(language => {
+        language.addEventListener("dblclick", () => {
+            editLanguage(language)
+        })
+    })
+
+    // function editLanguageActivate(language){
+    //     editLanguage(language)
+    // }
+
+    // function setAllLanguagesToEditable(allLanguages){
+        
+    // }
+    
+
+    function addLanguage(langName){
+        let li = document.createElement("li");
+        let text = document.createTextNode(langName)
+        li.appendChild(text);
+
+        document.querySelector(".languages").appendChild(li);
+
+        allLanguages = Array.from(document.querySelectorAll(".languages li"))
+
+        allLanguages[allLanguages.length - 1].addEventListener("dblclick", () => {
+            editLanguage(allLanguages[allLanguages.length - 1])
+        })
+    }
+
+    function editLanguage(targetLang){
+        allLanguages.forEach(innerLanguage => {
+            innerLanguage.classList.remove("editable")
+        })
+
+        targetLang.classList.add("editable")
+        allLanguages = Array.from(document.querySelectorAll(".languages li"))
+        // console.log(allLanguages);
+
+        allLanguages.forEach(language => {
+            if(language.classList.contains("editable")){
+                console.log(targetLang.innerHTML);
+                targetLanguageName = targetLang.innerHTML;
+                // let li = document.createElement("li");
+                // li.classList.add("editable");
+                let input = document.createElement("input");
+                input.value = targetLanguageName;
+                language.innerHTML = '';
+
+                language.appendChild(input);
+
+                input.focus();
+
+                input.addEventListener('blur', function () {
+                    if(input.value != ""){
+                        language.innerHTML = input.value;
+                    }else {
+                        language.remove()
+                    }
+                });
+                input.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+                        input.blur();
+                    }
+                });
+            }else {
+            }
+        })
+    }
+
+    
+
+    addLanguageBtn.addEventListener("click", function (){
+        let langName = prompt("Add Language Name:")
+        if(langName != "" && langName != null){
+            addLanguage(langName)
+        }
+    })
+
+</script>
+</html>

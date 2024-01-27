@@ -1,0 +1,26 @@
+body {
+  overflow: hidden;
+}
+.circle-effect {
+  height: 100px;
+  width: 100px;
+  border: 2px solid rgb(183, 183, 185);
+  /* background-color: white; */
+  animation: circleEffectAnimation 30s linear forwards;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+@keyframes circleEffectAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+ul {
+  list-style: none;
+}

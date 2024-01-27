@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishal and code</title>
+    <style>
+        .create_product_btn {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 0 0 rgb(195, 195, 195);
+            border: none;
+            cursor: pointer;
+        }
+        .create_product_btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 0 #000;
+        }
+    </style>
+</head>
+<body style="background-color: #212121; color: white;">
+    <button class="create_product_btn">Create New Product</button>
+    <div class="products" style="display: flex; padding: 10px;"></div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let productNumber = 1;
+        function createProduct(product){
+            let element = document.createElement("div");
+            // console.log(element);
+            element.classList.add("product");
+            element.id = Math.round(Math.random() * 10);
+            element.setAttribute("title", `${product.category}`);
+            element.style.backgroundColor = `${product.backgroundColor}`;
+            
+            element.style.color = `${product.color}`;
+            element.style.fontFamily = "monospace";
+            element.style.padding = "10px";
+            element.style.margin = "5px";
+            element.style.borderRadius = "10px";
+            element.style.boxShadow = "0 0 2px 1px white";
+            // element.style.mixBlendMode = "color-burn"
+
+            let heading = document.createElement("h4");
+            let p = document.createElement("p");
+            let productName = document.createTextNode(`${product.name}`);
+            let productDescription = document.createTextNode(`${product.description}`);
+            heading.appendChild(productName);
+            p.appendChild(productDescription);
+
+            element.appendChild(heading)
+            element.appendChild(p)
+
+            document.querySelector(".products").appendChild(element);
+            productNumber++;
+        }
+
+        let products = [
+            {
+                category: "Laptop",
+                name: "High-Performance Laptop",
+                description: "Powerful laptop with advanced features.",
+                backgroundColor: "purple",
+                color: "white"
+            },
+            {
+                category: "Smartphone",
+                name: "Flagship Smartphone",
+                description: "Cutting-edge smartphone with top-notch camera.",
+                backgroundColor: "blue",
+                color: "white"
+            },
+            {
+                category: "Headphones",
+                name: "Wireless Noise-Canceling Headphones",
+                description: "Immersive audio experience with noise cancellation.",
+                backgroundColor: "yellow",
+                color: "black",
+            },
+            {
+                category: "Coffee Maker",
+                name: "Premium Coffee Maker",
+                description: "Brew your favorite coffee with ease and style.",
+                backgroundColor: "green",
+                color: "white"
+            },
+            {
+                category: "Fitness Tracker",
+                name: "Smart Fitness Tracker",
+                description: "Track your health and fitness activities seamlessly.",
+                backgroundColor: "red",
+                color: "white"
+            },
+        ]
+
+        products.forEach((product) => {
+            let data = {
+                category: `${product.category}`,
+                name: `${product.name}`,
+                description: `${product.description}`,
+                backgroundColor: `${product.backgroundColor}`,
+                color: `${product.color}`
+            }
+
+            createProduct(data)
+        })
+
+        // function isColorDark(color) {
+        //     // Convert the color to RGB
+        //     var rgb = color.substring(0, color.length).replace(/ /g, '').split(',');
+        //     console.log(rgb);
+        //     var brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        //     console.log(brightness);
+
+        //     // Return true if the brightness is less than a threshold (adjust as needed)
+        //     return brightness < 128;
+        // }
+    })
+    
+    
+</script>
+</html>

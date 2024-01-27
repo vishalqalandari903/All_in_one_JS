@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta
+      name="google-signin-client_id"
+      content="YOUR_CLIENT_ID.apps.googleusercontent.com"
+    />
+  </head>
+  <body>
+    <!-- <div id="my-signin2"></div> -->
+    <div
+      class="g-signin2"
+      id="my-signin2"
+      data-width="300"
+      data-height="200"
+      data-longtitle="true"
+    ></div>
+    <script>
+      function onSuccess(googleUser) {
+        console.log("Logged in as: " + googleUser.getBasicProfile().getName());
+      }
+      function onFailure(error) {
+        console.log(error);
+      }
+      function renderButton() {
+        gapi.signin2.render("my-signin2", {
+          scope: "profile email",
+          width: 240,
+          height: 50,
+          longtitle: true,
+          theme: "dark",
+          onsuccess: onSuccess,
+          onfailure: onFailure,
+        });
+      }
+    </script>
+
+    <script
+      src="https://apis.google.com/js/platform.js?onload=renderButton"
+      async
+      defer
+    ></script>
+  </body>
+  <script>
+    // function error() {
+    //   throw new Error("hello");
+    // }
+    // error();
+    // console.log(throw new Error("log"));
+
+    //     const expect = val1 => {
+    //     return {
+    //         toBe: function (val2){
+    //             switch(val1){
+    //                 case val2: return true;
+    //                 default: throw new Error("Not Equal")
+    //             }
+    //         },
+    //         notToBe: function (val2){
+    //             // if(val1 !== val2){
+    //             //     return true;
+    //             // }else {
+    //             //     throw new Error("Equal")
+    //             // }
+    //             switch(val1){
+    //                 case val2: throw new Error("Equal");
+    //                 default: return true;
+    //             }
+    //         }
+    //     }
+    // }
+  </script>
+</html>
